@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
-# This script displays "Best School" 9 times and the las t line hi using while
+#Script displays best school other than the 4th and 8th iteration
 
 a=1
 while [ $a -le 10 ];
 do
-	if [ $a == 9 ]; then
-		echo "Best School"
-		echo "Hi"
+	if [ $a == 4 ]; then
+		echo "bad luck"
 		a=$((a+1))
-	else 
+	elif [ $a == 8 ]; then
+		echo "good luck"
+		a=$((a+1))
+	else
 		echo "Best School"
 		a=$((a+1))
-	fi	
+	fi
 done
