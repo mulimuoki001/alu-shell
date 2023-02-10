@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# This script displays "Best School" 9 times and the las t line hi using while
+
+a=1
+while [ $a -le 10 ];
+do
+	if [ $a == 9 ]; then
+		echo "Best School"
+		echo "Hi"
+		a=$((a+1))
+	else 
+		echo "Best School"
+		a=$((a+1))
+	fi	
+done
