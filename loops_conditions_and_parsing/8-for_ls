@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#code to display files in list form after omitting characters before -
+
+LS="$(ls)"
+for i in $LS
+do
+	echo "$i" | cut -d "-" -f 2
+done
