@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #display Best School 10 times
-for number in range(10):
+for number in range(10)
 do
 	echo"Best School"
 done
