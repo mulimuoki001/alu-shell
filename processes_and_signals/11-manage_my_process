@@ -1,22 +1,31 @@
 #!/usr/bin/env bash
-#Write a manage_my_process Bash script that
-if [ "$1" = start ]
-then
-	sudo -b ./manage_my_process
-	pgrep -lf ./manage_my_process | grep sudo |cut -d " " -f 1 > /var/run/my_process.pid
-	echo "manage_my_process started"
-elif [ "$1" = stop ]
-then
-	pkill -f manage_my_process
-	rm /var/run/my_process.pid
-	echo "manage_my_process stopped"
-elif [ "$1" = restart ]
-then
-	pkill -f ./manage_my_process
-	rm /var/run/my_process.pid
-	sudo -b ./manage_my_process
-	pgrep -lf ./manage_my_process | grep sudo | cut -d " " -f 1 > /var/run/my_process.pid
-	echo "manage_my_process restarted"
-else
-	echo "Usage: manage_my_process {start|stop|restart}"
-fi
+# managing processes
+
+start () {
+    ./manage_my_process &
+    echo $! > /var/run/my_process.pid
+    echo "manage_my_process started"
+}
+
+stop () {
+    pkill -f "./manage_my_process"
+    rm /var/run/my_process.pid
+    echo "manage_my_process stopped"
+}
+
+restart () {
+    pkill -f "./manage_my_process"    
+    rm /var/run/my_process.pid
+    ./manage_my_process &
+    echo $! >> /var/run/my_process.pid
+    echo "manage_my_process restarted"
+}
+
+case "$1" in
+   start) start ;;
+   stop)  stop;;
+   restart) restart;;
+   *) echo "Usage: manage_my_process {start|stop|restart}"
+    
+      ;;
+esac
